@@ -22,7 +22,6 @@ layout: default
         <div class="mb-3 text-muted">
           <small>
             <i class="far fa-calendar-alt"></i> {{ post.date | date: "%B %d, %Y" }}
-            <i class="far fa-comment ms-3"></i> 0 Comments
           </small>
         </div>
         <p class="card-text">{{ post.excerpt | strip_html | truncate: 120 }}</p>

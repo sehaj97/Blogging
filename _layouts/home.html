@@ -1,38 +1,51 @@
+
 ---
 layout: default
 ---
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-  {% for post in paginator.posts %}
-  <div class="col">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">
-          <a href="{{ post.url | relative_url }}" class="text-decoration-none text-dark">
-            {{ post.title }}
-          </a>
-        </h5>
-        <p class="card-text">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-      </div>
-      <div class="card-footer bg-transparent border-0">
-        <small class="text-muted">Published on {{ post.date | date: "%B %d, %Y" }}</small>
-      </div>
-    </div>
+
+<div class="categories">
+  
+<button class="category-btn" onclick="filterPosts('')">Show All</button>
+  <!-- Generate category buttons dynamically -->
+  
+  {% assign categories = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
+  
+  {% for category in categories %}
+    <button class="category-btn" onclick="filterPosts('{{ category | strip }}')">{{ category | capitalize }}</button>
+  {% endfor %}
+  
+</div>
+
+<div id="post-container" class="post-grid">
+  <!-- Render all posts dynamically -->
+  {% for post in site.posts %}
+  <div class="post-card" data-category="{{ post.categories | join: ',' }}">
+    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+    <p><small>{{ post.date | date: "%B %d, %Y" }}</small></p>
+    <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
   </div>
   {% endfor %}
 </div>
 
-<!-- Pagination -->
-<nav aria-label="Page navigation">
-  <ul class="pagination justify-content-center">
-    {% if paginator.previous_page %}
-    <li class="page-item">
-      <a class="page-link" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="page-item">
-      <a class="page-link" href="{{ paginator.next_page_path | relative_url }}">Next</a>
-    </li>
-    {% endif %}
-  </ul>
-</nav>
+
+<div class="see-more">
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | relative_url }}">
+      <button>See More</button>
+    </a>
+  {% endif %}
+</div>
+
+<script>
+  function filterPosts(category) {
+    const posts = document.querySelectorAll('.post-card');
+    posts.forEach(post => {
+      // Check if the post contains the selected category
+      if (post.dataset.category.includes(category)) {
+        post.style.display = "block"; // Show the post
+      } else {
+        post.style.display = "none"; // Hide the post
+      }
+    });
+  }
+</script>

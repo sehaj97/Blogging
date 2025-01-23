@@ -1,3 +1,5 @@
 title: "Sehaj's Research Hub"
 description: "This is my research hub on mindset, yoga, software and more"
-baseurl: ""
+paginate: 10 # Number of posts to show per page
+paginate_path: "/page/:num/"
+

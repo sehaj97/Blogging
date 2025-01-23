@@ -136,15 +136,7 @@
       </div>
     </div>
   </nav>
-  <!-- Category Filter Buttons -->
-  <div id="category-buttons" class="d-flex flex-wrap mb-4">
-    <button class="btn btn-outline-primary m-1 category-btn" data-category="all">All</button>
-    {% for category in site.categories %}
-    <button class="btn btn-outline-primary m-1 category-btn" data-category="{{ category | downcase }}">
-      {{ category }}
-    </button>
-    {% endfor %}
-  </div>
+
   <main class="container">
     {{ content }}
   </main>

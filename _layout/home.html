@@ -2,26 +2,28 @@
 layout: default
 ---
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+<div class="container py-5">
+  <h1 class="text-center mb-4">{{ page.title }}</h1>
+  <p class="text-center">{{ page.description }}</p>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     {% for post in site.posts %}
     <div class="col">
-        <div class="card h-100 shadow-sm border-0">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <a href="{{ post.url | relative_url }}" class="stretched-link text-dark">
-                        {{ post.title }}
-                    </a>
-                </h5>
-                <p class="card-text">
-                    {{ post.excerpt | strip_html | truncate: 100 }}
-                </p>
-            </div>
-            <div class="card-footer bg-transparent border-0">
-                <a href="{{ post.url | relative_url }}" class="read-more">
-                    Read more <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{{ post.url | relative_url }}" class="text-decoration-none text-dark">
+              {{ post.title }}
+            </a>
+          </h5>
+          <p class="card-text">
+            {{ post.excerpt | strip_html | truncate: 100 }}
+          </p>
         </div>
+        <div class="card-footer bg-transparent border-0">
+          <a href="{{ post.url | relative_url }}" class="btn btn-primary btn-sm">Read More</a>
+        </div>
+      </div>
     </div>
     {% endfor %}
+  </div>
 </div>

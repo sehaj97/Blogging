@@ -1,10 +1,8 @@
 title: "Sehaj's Research Hub"
 description: "This is my research hub on mindset, yoga, software and more"
-plugins:
-  - jekyll-paginate
-
-paginate: 10
-paginate_path: "/page:num/"
-
-
+category_color_map:
+  yoga: "#28a745" # Green
+  lifestyle: "#007bff" # Blue
+  mindset: "#ffc107" # Yellow
+  self-help: "#fd7e14" # Orange
 

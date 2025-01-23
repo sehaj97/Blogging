@@ -10,11 +10,13 @@ layout: default
           <!-- Categories -->
           <div class="mb-2">
             {% for category in post.categories %}
-            <span class="badge rounded-pill bg-{{ bootstrapcolor }} text-white me-1">
+            <span class="badge rounded-pill text-white me-1"
+              style="background-color: {{ category_color_map[category] | default: '#6c757d' }}">
               {{ category }}
             </span>
             {% endfor %}
           </div>
+
 
           <!-- Post Title -->
           <h5 class="card-title text-dark">{{ post.title }}</h5>

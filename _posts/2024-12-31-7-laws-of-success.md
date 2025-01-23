@@ -3,7 +3,6 @@ layout: post
 title: "The Seven Spiritual Laws of Success By Deepak Chopra"
 date: 2025-01-01
 categories: [mindset]
-bootstrapcolor: warning
 ---
 
 This book offers a spiritual approach to achieving success in life by aligning with the universal laws of nature. It emphasizes the importance of balance, mindfulness, and connection to our deeper purpose.

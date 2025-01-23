@@ -34,11 +34,13 @@ layout: default
   function filterPosts(category) {
     const posts = document.querySelectorAll('.post-card');
     posts.forEach(post => {
+      // Check if the post contains the selected category
       if (post.dataset.category.includes(category)) {
-        post.style.display = "block";
+        post.style.display = "block"; // Show the post
       } else {
-        post.style.display = "none";
+        post.style.display = "none"; // Hide the post
       }
     });
   }
 </script>
+

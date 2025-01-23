@@ -1,42 +1,48 @@
 ---
 layout: default
 ---
+<!-- Category Filter Buttons -->
+<div id="category-buttons" class="d-flex flex-wrap mb-4">
+  <button class="btn btn-outline-primary m-1 category-btn" data-category="all">All</button>
+  {% for category in site.categories %}
+  <button class="btn btn-outline-primary m-1 category-btn" data-category="{{ category | downcase }}">
+    {{ category }}
+  </button>
+  {% endfor %}
+</div>
+
+<!-- Blog Posts -->
 <div id="posts-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for post in site.posts %}
-  <div class="col">
-    <a href="{{ post.url | relative_url }}" class="text-decoration-none">
-      <div class="card h-100 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
-        <div class="card-body">
-          <!-- Categories -->
-          <div class="mb-2">
-            {% for category in post.categories %}
-            <span class="badge rounded-pill text-white me-1"
-              style="background-color: {{ category_color_map[category] | default: '#6c757d' }}">
-              {{ category }}
-            </span>
-            {% endfor %}
-          </div>
-
-
-          <!-- Post Title -->
-          <h5 class="card-title text-dark">{{ post.title }}</h5>
-          <hr />
-
-          <!-- Metadata -->
-          <div class="mb-3 text-muted">
-            <small>
-              <i class="far fa-calendar-alt"></i> {{ post.date | date: "%B %d, %Y" }}
-            </small>
-          </div>
-
-          <!-- Post Excerpt -->
-          <p class="card-text">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+  <div class="col post-card" data-categories="{{ post.categories | join: ' ' }}">
+    <div class="card h-100 shadow-sm" style="background: linear-gradient(135deg, #f8f9fa, #e9ecef);">
+      <div class="card-body">
+        <div class="mb-2">
+          {% for category in post.categories %}
+          <span
+            class="badge rounded-pill text-white me-1 {{ site.category_color_map[category] | default: site.category_color_map.default }}">
+            {{ category }}
+          </span>
+          {% endfor %}
         </div>
+
+
+
+        <h5 class="card-title">{{ post.title }}</h5>
+        <hr />
+        <div class="mb-3 text-muted">
+          <small>
+            <i class="far fa-calendar-alt"></i> {{ post.date | date: "%B %d, %Y" }}
+            <i class="far fa-comment ms-3"></i> 0 Comments
+          </small>
+        </div>
+        <p class="card-text">{{ post.excerpt | strip_html | truncate: 120 }}</p>
       </div>
-    </a>
+    </div>
   </div>
   {% endfor %}
 </div>
+
 
 
 
@@ -111,5 +117,31 @@ layout: default
     // Initial setup
     displayPosts(currentPage);
     createPagination();
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".category-btn");
+    const posts = document.querySelectorAll(".post-card");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.category;
+
+        // Highlight the active button
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        // Filter posts
+        posts.forEach((post) => {
+          const postCategories = post.dataset.categories.toLowerCase();
+          if (category === "all" || postCategories.includes(category)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+    });
   });
 </script>

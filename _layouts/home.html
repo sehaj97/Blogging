@@ -11,8 +11,8 @@ layout: default
 </div>
 
 <div id="post-container" class="post-grid">
-  <!-- Display posts dynamically -->
-  {% for post in paginator.posts %}
+  <!-- Render all posts dynamically -->
+  {% for post in site.posts %}
   <div class="post-card" data-category="{{ post.categories | join: ',' }}">
     <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
     <p><small>{{ post.date | date: "%B %d, %Y" }}</small></p>
@@ -20,6 +20,7 @@ layout: default
   </div>
   {% endfor %}
 </div>
+
 
 <div class="see-more">
   {% if paginator.next_page %}

@@ -1,7 +1,7 @@
 ---
 layout: home
-title: "Home"
+title: "Welcome to My Blog"
 ---
 
-# Welcome to My Mind Maps
-Explore my posts below!
+# Hello!
+Welcome to my research hub. Explore posts below!

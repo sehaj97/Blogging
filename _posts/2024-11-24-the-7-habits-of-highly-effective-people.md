@@ -2,7 +2,7 @@
 layout: post
 title: "The 7 Habits of Highly Effective People"
 date: 2024-11-24
-categories: [self-help]
+categories: [self-help], [yoga]
 ---
 
 # The 7 Habits of Highly Effective People

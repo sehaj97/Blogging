@@ -2,110 +2,71 @@
 layout: default
 ---
 
-<div class="post-container">
+<div class="container my-5">
   <!-- Post Header -->
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">Published on <strong>{{ page.date | date: "%B %d, %Y" }}</strong></p>
-  </header>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h1 class="card-title text-center mb-4">{{ page.title }}</h1>
+      <p class="text-center text-muted">
+        Published on <strong>{{ page.date | date: "%B %d, %Y" }}</strong>
+      </p>
+      {% if page.categories %}
+      <p class="text-center">
+        <span class="badge bg-primary">{{ page.categories | join: ", " }}</span>
+      </p>
+      {% endif %}
+    </div>
+  </div>
 
   <!-- Post Content -->
-  <article class="post-content">
-    {{ content }}
-  </article>
+  <div class="card mt-4">
+    <div class="card-body">
+      <article class="post-content">
+        {{ content }}
+      </article>
+    </div>
+  </div>
+
+  <!-- Navigation for Next and Previous Posts -->
+  <div class="d-flex justify-content-between mt-4">
+    {% if page.previous %}
+    <a href="{{ page.previous.url | relative_url }}" class="btn btn-outline-primary">← Previous</a>
+    {% endif %}
+    {% if page.next %}
+    <a href="{{ page.next.url | relative_url }}" class="btn btn-outline-primary ms-auto">Next →</a>
+    {% endif %}
+  </div>
 
   <!-- Back Button -->
-  <div class="back-button-container">
-    <button onclick="goBack()" class="back-button">← Back</button>
+  <div class="text-center mt-4">
+    <a href="{{ '/' | relative_url }}" class="btn btn-secondary">← Back to Home</a>
   </div>
 </div>
 
 <!-- Styling -->
 <style>
-  /* Post Container */
-  .post-container {
-    max-width: 800px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background: #fff;
+  .post-content img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
-
-  /* Post Header */
-  .post-header {
-    text-align: center;
-    background: linear-gradient(135deg, #007acc, #0056b3);
-    color: #fff;
-    padding: 2rem;
-    border-radius: 10px 10px 0 0;
-    margin-bottom: 2rem;
+  .post-content h2,
+  .post-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #007acc;
   }
-
-  .post-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
-  .post-meta {
-    font-size: 0.9rem;
-    color: #ddd;
-  }
-
-  /* Post Content */
-  .post-content {
-    line-height: 1.8;
-    color: #333;
-  }
-
-  .post-content h2 {
-    font-size: 1.5rem;
-    margin-top: 1.5rem;
-    color: #0056b3;
-  }
-
   .post-content p {
+    line-height: 1.8;
     font-size: 1rem;
     margin-bottom: 1rem;
+    color: #333;
   }
-
   .post-content ul {
-    margin: 1rem 0;
     padding-left: 1.5rem;
   }
-
   .post-content ul li {
     margin-bottom: 0.5rem;
   }
-
-  /* Back Button */
-  .back-button-container {
-    text-align: center;
-    margin-top: 2rem;
-  }
-
-  .back-button {
-    padding: 0.7rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #007acc;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-  }
-
-  .back-button:hover {
-    background-color: #005f9e;
-    transform: scale(1.05);
-  }
 </style>
-
-<!-- Back Button Script -->
-<script>
-  function goBack() {
-    window.history.back();
-  }
-</script>

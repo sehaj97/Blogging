@@ -20,7 +20,8 @@
     border: none;
     border-radius: 15px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fff;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Gradient background */
   }
 
   .card:hover {
@@ -28,15 +29,21 @@
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
   }
 
-  .badge {
-    font-size: 0.75rem;
-    padding: 5px 10px;
+  a.text-decoration-none:hover .card {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
   }
 
   .card-title {
     font-weight: 600;
     font-size: 1.2rem;
-    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
   }
 
   .card-text {
@@ -44,9 +51,18 @@
     color: #555;
   }
 
+  .badge {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
   .text-muted small {
     display: inline-block;
     margin-top: 5px;
+  }
+
+  .text-muted i {
+    margin-right: 5px;
   }
     footer {
       background-color: #222;

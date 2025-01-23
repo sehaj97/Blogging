@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+<style>
+/* Simple responsive grid CSS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 1rem;
+}
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  padding: 1rem;
+  transition: box-shadow 0.3s;
+}
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.card-title {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+.card-title a {
+  text-decoration: none;
+  color: inherit;
+}
+.card-excerpt {
+  color: #555;
+  font-size: 0.95rem;
+  margin: 0.5rem 0 0.5rem 0;
+}
+.read-more {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #007acc;
+  font-weight: 600;
+  text-decoration: none;
+}
+.read-more:hover {
+  text-decoration: underline;
+}
+</style>
+
+<div class="card-grid">
+  {% for post in site.posts %}
+    <div class="card">
+      <h2 class="card-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h2>
+      <p class="card-excerpt">
+        {{ post.excerpt }}
+      </p>
+      <a class="read-more" href="{{ post.url | relative_url }}">
+        Read more →
+      </a>
+    </div>
+  {% endfor %}
+</div>

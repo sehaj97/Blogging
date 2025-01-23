@@ -2,6 +2,9 @@
 layout: default
 ---
 
+<button class="category-btn" onclick="filterPosts('')">Show All</button>
+
+
 <div class="categories">
   <!-- Generate category buttons dynamically -->
   {% assign categories = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}

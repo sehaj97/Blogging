@@ -35,6 +35,24 @@
     .pagination {
       justify-content: center;
     }
+      .post-card {
+    display: none; /* Hide all posts initially (handled by JS) */
+  }
+
+  #pagination-container button {
+    margin: 0 5px;
+  }
+
+  .card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
   </style>
 </head>
 <body>

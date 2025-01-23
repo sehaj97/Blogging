@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for post in paginator.posts %}
   <div class="col">
@@ -24,19 +23,15 @@ layout: default
 
 <!-- Pagination -->
 <nav aria-label="Page navigation">
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
     {% if paginator.previous_page %}
     <li class="page-item">
-      <a class="page-link" href="{{ paginator.previous_page_path | relative_url }}" aria-label="Previous">
-        &laquo; Previous
-      </a>
+      <a class="page-link" href="{{ paginator.previous_page_path | relative_url }}">Previous</a>
     </li>
     {% endif %}
     {% if paginator.next_page %}
     <li class="page-item">
-      <a class="page-link" href="{{ paginator.next_page_path | relative_url }}" aria-label="Next">
-        Next &raquo;
-      </a>
+      <a class="page-link" href="{{ paginator.next_page_path | relative_url }}">Next</a>
     </li>
     {% endif %}
   </ul>

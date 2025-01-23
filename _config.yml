@@ -5,4 +5,5 @@ category_color_map:
   mindset: "bg-primary"
   HowTo: "bg-warning"
   self-help: "bg-info"
+  book: "bg-info"
   default: "bg-secondary"

@@ -76,12 +76,31 @@
     .see-more button:hover {
       background: #005f9e;
     }
+  .back-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .back-button:hover {
+    background-color: #005f9e;
+    transform: scale(1.05);
+  }
+
   </style>
 </head>
 <body>
   <header>
     <h1>{{ site.title }}</h1>
     <p>{{ site.description }}</p>
+   
+
   </header>
   <main>
     {{ content }}

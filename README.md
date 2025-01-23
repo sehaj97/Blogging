@@ -91,11 +91,12 @@ To add new categories with custom colors:
 
   ```yaml
   category_color_map:
-    yoga: "#28a745"
-    leadership: "#007bff"
-    mindset: "#ffc107"
-    self-help: "#fd7e14"
-    default: "#6c757d"
+      yoga: "bg-success"
+  mindset: "bg-primary"
+  HowTo: "bg-warning"
+  self-help: "bg-info"
+  book: "bg-info"
+  default: "bg-secondary"
   ```
 
 

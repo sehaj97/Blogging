@@ -2,15 +2,19 @@
 layout: default
 ---
 
-<button class="category-btn" onclick="filterPosts('')">Show All</button>
 
 
 <div class="categories">
+  
+<button class="category-btn" onclick="filterPosts('')">Show All</button>
   <!-- Generate category buttons dynamically -->
+  
   {% assign categories = site.posts | map: "categories" | join: "," | split: "," | uniq | sort %}
+  
   {% for category in categories %}
     <button class="category-btn" onclick="filterPosts('{{ category | strip }}')">{{ category | capitalize }}</button>
   {% endfor %}
+  
 </div>
 
 <div id="post-container" class="post-grid">

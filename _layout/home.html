@@ -3,46 +3,68 @@ layout: default
 ---
 
 <style>
-/* Simple responsive grid CSS */
+/* Responsive Grid Container */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
   margin: 2rem 1rem;
 }
+
+/* Card Styles */
 .card {
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  background: #fff;
-  padding: 1rem;
-  transition: box-shadow 0.3s;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Each card will have a unique gradient background */
+.card:nth-child(1) { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
+.card:nth-child(2) { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+.card:nth-child(3) { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+.card:nth-child(4) { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.card:nth-child(5) { background: linear-gradient(135deg, #fad0c4, #ffd1ff); }
+
 .card:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
 .card-title {
   margin-top: 0;
-  font-size: 1.2rem;
-  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
 }
+
 .card-title a {
   text-decoration: none;
   color: inherit;
 }
+
 .card-excerpt {
-  color: #555;
-  font-size: 0.95rem;
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 0.5rem 0 1rem;
+  color: white;
+  font-size: 1rem;
 }
+
 .read-more {
   display: inline-block;
-  margin-top: 0.5rem;
-  color: #007acc;
-  font-weight: 600;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
   text-decoration: none;
+  font-weight: bold;
+  color: #333;
+  transition: background 0.3s;
 }
+
 .read-more:hover {
-  text-decoration: underline;
+  background: white;
 }
 </style>
 
@@ -53,11 +75,9 @@ layout: default
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       </h2>
       <p class="card-excerpt">
-        {{ post.excerpt }}
+        {{ post.excerpt | strip_html | truncate: 100 }}
       </p>
-      <a class="read-more" href="{{ post.url | relative_url }}">
-        Read more →
-      </a>
+      <a class="read-more" href="{{ post.url | relative_url }}">Read more →</a>
     </div>
   {% endfor %}
 </div>

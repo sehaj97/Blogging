@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,92 +14,108 @@
     body {
       background-color: #f8f9fa;
     }
+
     .navbar {
       margin-bottom: 20px;
     }
+
     .card {
-    border: none;
-    border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef); /* Gradient background */
-  }
+      border: none;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      /* Gradient background */
+    }
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-  }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
 
-  a.text-decoration-none:hover .card {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-  }
+    a.text-decoration-none:hover .card {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    }
 
-  .card-title {
-    font-weight: 600;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
+    .card-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
 
-  hr {
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 10px 0;
-  }
+    hr {
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 10px 0;
+    }
 
-  .card-text {
-    font-size: 0.95rem;
-    color: #555;
-  }
+    .card-text {
+      font-size: 0.95rem;
+      color: #555;
+    }
 
-  .badge {
-    font-size: 0.75rem;
-    padding: 5px 10px;
-  }
+    .badge {
+      font-size: 0.75rem;
+      padding: 5px 10px;
+    }
 
-  .text-muted small {
-    display: inline-block;
-    margin-top: 5px;
-  }
+    .text-muted small {
+      display: inline-block;
+      margin-top: 5px;
+    }
 
-  .text-muted i {
-    margin-right: 5px;
-  }
+    .text-muted i {
+      margin-right: 5px;
+    }
+
     footer {
       background-color: #222;
       color: #fff;
       padding: 20px;
       text-align: center;
     }
+
     .pagination {
       justify-content: center;
     }
-      .post-card {
-    display: none; /* Hide all posts initially (handled by JS) */
-  }
 
-  #pagination-container button {
-    margin: 0 5px;
-  }
+    .post-card {
+      display: none;
+      /* Hide all posts initially (handled by JS) */
+    }
 
-  .card {
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
+    #pagination-container button {
+      margin: 0 5px;
+    }
+
+    .card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-btn.active {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+    }
   </style>
 </head>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -106,7 +123,7 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
           </li>
-<!--           <li class="nav-item">
+          <!--           <li class="nav-item">
             <a class="nav-link" href="{{ '/categories/' | relative_url }}">Categories</a>
           </li>
           <li class="nav-item">
@@ -119,7 +136,15 @@
       </div>
     </div>
   </nav>
-
+  <!-- Category Filter Buttons -->
+  <div id="category-buttons" class="d-flex flex-wrap mb-4">
+    <button class="btn btn-outline-primary m-1 category-btn" data-category="all">All</button>
+    {% for category in site.categories %}
+    <button class="btn btn-outline-primary m-1 category-btn" data-category="{{ category | downcase }}">
+      {{ category }}
+    </button>
+    {% endfor %}
+  </div>
   <main class="container">
     {{ content }}
   </main>
@@ -131,5 +156,32 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const buttons = document.querySelectorAll(".category-btn");
+      const posts = document.querySelectorAll(".post-card");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const category = button.dataset.category;
+
+          // Highlight the active button
+          buttons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+
+          // Filter posts
+          posts.forEach((post) => {
+            const postCategories = post.dataset.categories.toLowerCase();
+            if (category === "all" || postCategories.includes(category)) {
+              post.style.display = "block";
+            } else {
+              post.style.display = "none";
+            }
+          });
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>

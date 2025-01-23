@@ -3,23 +3,41 @@ layout: default
 ---
 <div id="posts-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   {% for post in site.posts %}
-  <div class="col post-card">
-    <div class="card h-100">
+  <div class="col">
+    <div class="card h-100 shadow-sm">
       <div class="card-body">
+        <!-- Categories -->
+        <div class="mb-2">
+          {% for category in post.categories %}
+          <span class="badge rounded-pill bg-success text-white me-1">
+            {{ category }}
+          </span>
+          {% endfor %}
+        </div>
+
+        <!-- Post Title -->
         <h5 class="card-title">
           <a href="{{ post.url | relative_url }}" class="text-decoration-none text-dark">
             {{ post.title }}
           </a>
         </h5>
-        <p class="card-text">{{ post.excerpt | strip_html | truncate: 150 }}</p>
-      </div>
-      <div class="card-footer bg-transparent border-0">
-        <small class="text-muted">Published on {{ post.date | date: "%B %d, %Y" }}</small>
+
+        <!-- Metadata -->
+        <div class="mb-3 text-muted">
+          <small>
+            <i class="far fa-calendar-alt"></i> {{ post.date | date: "%B %d, %Y" }}
+            <i class="far fa-comment ms-3"></i> 0 Comments
+          </small>
+        </div>
+
+        <!-- Post Excerpt -->
+        <p class="card-text">{{ post.excerpt | strip_html | truncate: 120 }}</p>
       </div>
     </div>
   </div>
   {% endfor %}
 </div>
+
 
 <div id="pagination-container" class="d-flex justify-content-center mt-4"></div>
 

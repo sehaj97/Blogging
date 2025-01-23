@@ -36,3 +36,74 @@ layout: default
     {% endif %}
   </ul>
 </nav>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const postsPerPage = 10; // Number of posts to show per page
+    const postsContainer = document.getElementById("posts-container");
+    const paginationContainer = document.getElementById("pagination-container");
+
+    // Get all posts
+    const posts = Array.from(postsContainer.getElementsByClassName("post-card"));
+    const totalPages = Math.ceil(posts.length / postsPerPage);
+    let currentPage = 1;
+
+    // Function to display posts for the current page
+    function displayPosts(page) {
+      const start = (page - 1) * postsPerPage;
+      const end = page * postsPerPage;
+
+      // Hide all posts
+      posts.forEach((post, index) => {
+        post.style.display = index >= start && index < end ? "block" : "none";
+      });
+    }
+
+    // Function to create pagination controls
+    function createPagination() {
+      paginationContainer.innerHTML = ""; // Clear existing pagination
+
+      // Previous Button
+      if (currentPage > 1) {
+        const prevButton = document.createElement("button");
+        prevButton.innerText = "Previous";
+        prevButton.className = "btn btn-secondary me-2";
+        prevButton.addEventListener("click", () => {
+          currentPage--;
+          displayPosts(currentPage);
+          createPagination();
+        });
+        paginationContainer.appendChild(prevButton);
+      }
+
+      // Page Numbers
+      for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement("button");
+        pageButton.innerText = i;
+        pageButton.className = `btn ${i === currentPage ? "btn-primary" : "btn-outline-primary"} mx-1`;
+        pageButton.addEventListener("click", () => {
+          currentPage = i;
+          displayPosts(currentPage);
+          createPagination();
+        });
+        paginationContainer.appendChild(pageButton);
+      }
+
+      // Next Button
+      if (currentPage < totalPages) {
+        const nextButton = document.createElement("button");
+        nextButton.innerText = "Next";
+        nextButton.className = "btn btn-secondary ms-2";
+        nextButton.addEventListener("click", () => {
+          currentPage++;
+          displayPosts(currentPage);
+          createPagination();
+        });
+        paginationContainer.appendChild(nextButton);
+      }
+    }
+
+    // Initial setup
+    displayPosts(currentPage);
+    createPagination();
+  });
+</script>

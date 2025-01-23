@@ -4,109 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }} | {{ site.title }}</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       background-color: #f8f9fa;
     }
-    header {
-      background: #007acc;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+    .navbar {
+      margin-bottom: 20px;
+    }
+    .card {
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
     footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-    .categories {
-      margin: 1rem auto;
+      background-color: #222;
+      color: #fff;
+      padding: 20px;
       text-align: center;
     }
-    .categories button {
-      margin: 0.5rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      background: #007acc;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
+    .pagination {
+      justify-content: center;
     }
-    .categories button:hover {
-      background: #005f9e;
-    }
-    .post-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1rem;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
-    .post-card {
-      background: white;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .post-card h2 {
-      font-size: 1.2rem;
-    }
-    .post-card p {
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .see-more {
-      text-align: center;
-      margin: 2rem 0;
-    }
-    .see-more button {
-      padding: 0.5rem 1rem;
-      background: #007acc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .see-more button:hover {
-      background: #005f9e;
-    }
-  .back-button {
-    padding: 0.7rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #007acc;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-  .back-button:hover {
-    background-color: #005f9e;
-    transform: scale(1.05);
-  }
-
   </style>
 </head>
 <body>
-  <header>
-    <h1>{{ site.title }}</h1>
-    <p>{{ site.description }}</p>
-   
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/' | relative_url }}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/categories/' | relative_url }}">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/about/' | relative_url }}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ '/contact/' | relative_url }}">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  </header>
-  <main>
+  <main class="container">
     {{ content }}
   </main>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}</p>
+    <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
   </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

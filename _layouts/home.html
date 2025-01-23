@@ -10,7 +10,7 @@ layout: default
           <!-- Categories -->
           <div class="mb-2">
             {% for category in post.categories %}
-            <span class="badge rounded-pill bg-success text-white me-1">
+            <span class="badge rounded-pill bg-{{ bootstrapcolor }} text-white me-1">
               {{ category }}
             </span>
             {% endfor %}

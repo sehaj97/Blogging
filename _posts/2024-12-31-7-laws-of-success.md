@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Seven Spiritual Laws of Success By Deepak Chopra"
-date: 2025-01-01
+date: 2024-12-31
 categories: [mindset]
 ---
 
